@@ -35,9 +35,38 @@ router.post('/rewards', async (req, res) => {
   } catch (err) {
     res.status(500).send({error: err.message});
   }
-
-
 });
 
+router.put('/goals', async (req, res) => {
+ let { id } = req.body;
+  try {
+    await db(`UPDATE goals SET completed = true WHERE id = ${id};`);
+    const results = await db(`SELECT * FROM goals;`);
+    res.send(results.data);
+  } catch (err) {
+    res.status(500).send({error: err.message});
+  }
+});
+
+router.get('/rewards', async (req, res) => {
+  try {
+    let results = await db(`SELECT * FROM rewards;`);
+    res.send(results.data);
+  } catch (err) {
+    res.status(500).send({error: err.message});
+  }
+});
+
+router.delete('/goals', async (req, res) => {
+  let { id } = req.body;
+  try {
+    await db(`DELETE FROM goals WHERE id = ${id};`);
+    const results =  await db(`SELECT * FROM goals;`)
+    res.send(results.data);
+  } catch (err) {
+    res.status(500).send({error: err.message});
+  }
+ 
+})
 
 module.exports = router;
