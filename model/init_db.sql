@@ -3,16 +3,30 @@
 --
 
 SET foreign_key_checks = 0;
-DROP TABLE if exists students;
+DROP TABLE if exists goals;
+DROP TABLE if exists rewards;
 SET foreign_key_checks = 1;
 
 --
 -- Create Tables
 --
 
-CREATE TABLE students(
-    id INT NOT NULL AUTO_INCREMENT, 
-    firstname VARCHAR(40) not null, 
-    lastname VARCHAR(40) not null, 
-    PRIMARY KEY (id)
-    );
+CREATE TABLE `goals`(
+    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `goal` VARCHAR(255) NOT NULL,
+    `difflevel` INT NOT NULL,
+    `dayofweek` VARCHAR(255) NOT NULL,
+    `completed` BOOLEAN NOT NULL
+);
+
+CREATE TABLE `rewards`(
+    `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `reward` VARCHAR(255) NOT NULL,
+    `gemlevel` INT NOT NULL
+);
+
+
+
+
+
+
