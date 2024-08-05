@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import Form from "./components/Form";
+import Weekview from "./components/Weekview";
 import './App.css'
 
 function App() {
@@ -19,6 +21,8 @@ function App() {
 
   return (
     <>
+    <Form/>
+
     <div className='week-layout'>
       <div>
         <h2>MONDAY</h2>
@@ -28,6 +32,7 @@ function App() {
               <li key = {e.id}>{e.goal}</li>
               )
             ))}
+            <button>Add Goal</button>
           </ul>
       </div>
 
