@@ -12,3 +12,13 @@
   flex-direction: row;
   gap: 7%;
 }
+
+.score-component {
+  display: flex;
+  flex-direction: row;
+  text-align: right;
+}
+
+.done {
+  text-decoration: line-through;
+}

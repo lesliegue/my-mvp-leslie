@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react'
 import Form from "./components/Form";
-import Weekview from "./components/Weekview";
-import './App.css'
+import Score from "./components/Score";
+import Rewards from "./components/Rewards";
+import './App.css';
+
 
 function App() {
   const [allGoals, setallGoals] = useState([]);
@@ -19,20 +21,59 @@ function App() {
     });
   }, []);
 
+  const handleAddGoal = (newGoal) => {
+    console.log(newGoal)
+    // setallGoals((state) => [...state, newGoal]);
+    fetch("/api/goals", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({newGoal})
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data)
+      setallGoals(data)
+    })
+  }
+
+    const handleClick = (e) => {
+      fetch("/api/goals", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({e})
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        setallGoals(data)
+      })
+    }
+   
+  
+
   return (
     <>
-    <Form/>
-
+    <div className ='score-component'>
+    <Score/>
+    </div>
+    <Form addGoal={(newGoal) => handleAddGoal(newGoal)}/>
+    
     <div className='week-layout'>
       <div>
         <h2>MONDAY</h2>
           <ul>
             {allGoals.map((e, i)=> 
               ((e.dayofweek === "monday") && (
-              <li key = {e.id}>{e.goal}</li>
+              <li key = {e.id}
+              className={!e.completed ? "not-done" : "done"}
+              onClick = {() => handleClick(e)}
+              >{e.goal}</li>
+              
               )
             ))}
-            <button>Add Goal</button>
           </ul>
       </div>
 
@@ -41,7 +82,10 @@ function App() {
           <ul>
             {allGoals.map((e, i)=> 
               ((e.dayofweek === "tuesday") && (
-              <li key = {e.id}>{e.goal}</li>
+              <li key = {e.id}
+              className={!e.completed ? "not-done" : "done"}
+              onClick = {() => handleClick(e)}
+              >{e.goal}</li>
               )
             ))}
           </ul>
@@ -52,7 +96,10 @@ function App() {
           <ul>
             {allGoals.map((e, i)=> 
               ((e.dayofweek === "wednesday") && (
-              <li key = {e.id}>{e.goal}</li>
+              <li key = {e.id}
+              className={!e.completed ? "not-done" : "done"}
+              onClick = {() => handleClick(e)}
+              >{e.goal}</li>
               )
             ))}
           </ul>
@@ -63,7 +110,10 @@ function App() {
           <ul>
             {allGoals.map((e, i)=> 
               ((e.dayofweek === "thursday") && (
-              <li key = {e.id}>{e.goal}</li>
+              <li key = {e.id}
+              className={!e.completed ? "not-done" : "done"}
+              onClick = {() => handleClick(e)}
+              >{e.goal}</li>
               )
             ))}
           </ul>
@@ -74,7 +124,10 @@ function App() {
           <ul>
             {allGoals.map((e, i)=> 
               ((e.dayofweek === "friday") && (
-              <li key = {e.id}>{e.goal}</li>
+              <li key = {e.id}
+              className={!e.completed ? "not-done" : "done"}
+              onClick = {() => handleClick(e)}
+              >{e.goal}</li>
               )
             ))}
           </ul>
@@ -85,7 +138,10 @@ function App() {
           <ul>
             {allGoals.map((e, i)=> 
               ((e.dayofweek === "saturday") && (
-              <li key = {e.id}>{e.goal}</li>
+              <li key = {e.id}
+              className={!e.completed ? "not-done" : "done"}
+              onClick = {() => handleClick(e)}
+              >{e.goal}</li>
               )
             ))}
           </ul>
@@ -96,11 +152,17 @@ function App() {
           <ul>
             {allGoals.map((e, i)=> 
               ((e.dayofweek === "sunday") && (
-              <li key = {e.id}>{e.goal}</li>
+              <li key = {e.id}
+              className={!e.completed ? "not-done" : "done"}
+              onClick = {() => handleClick(e)}
+              >{e.goal}</li>
               )
             ))}
           </ul>
       </div>
+    </div>
+    <div>
+      <Rewards/>
     </div>
 
     </>

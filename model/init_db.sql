@@ -22,7 +22,7 @@ CREATE TABLE `goals`(
 CREATE TABLE `rewards`(
     `id` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
     `reward` VARCHAR(255) NOT NULL,
-    `gemlevel` INT NOT NULL
+    `gemlevel` VARCHAR(255) NOT NULL
 );
 
 
