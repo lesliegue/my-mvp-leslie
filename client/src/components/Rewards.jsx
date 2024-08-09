@@ -1,34 +1,43 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import "./Rewards.css"
 
-function Rewards() {
+function Rewards(score) {
 
-    const [newReward, setNewReward] = useState({
-        reward : "",
-        gemlevel : ""
-    })
+    const [rewards, setRewards] = useState([
+      { reward : "", gemlevel : "topaz"},
+      { reward : "", gemlevel: "emerald"},
+      { reward : "", gemlevel : "diamond"}
+  ])
 
-  //   const [Topaz, setTopaz] = useState({
-  //     reward : "",
-  //     gemlevel : ""
-  // })
+
+  const [rewardsSent, setRewardsSent] = useState(false)
+
+  const [topazUnlocked, setTopazUnlocked] = useState(false);
+  const [emeraldUnlocked, setEmeraldUnlocked] = useState(false);
+  const [diamondUnlocked, setDiamondUnlocked] = useState(false);
+
 
     const handleInputChange  = (event) => {
-        const value = event.target.value;
-        const name = event.target.name;
+      const value = event.target.value;
+      const name = event.target.name;
 
-        setNewReward((state) => ({
-            ...state, 
-            reward: value,
-            gemlevel : name
-        }))
+      const indexMap = {
+      topaz: 0,
+      emerald: 1,
+      diamond: 2,
+      };
+
+      const index = indexMap[name];
+
+      const inputValues = [...rewards];
+      inputValues[index] = {
+        reward: value,
+        gemlevel: name
+      };
+
+      setRewards(inputValues);
     }
-
-    // const handleTopaz = (event) => {
-    //   setNewReward((state) => ({
-    //     reward: event.target.value,
-    //     gemlevel: "topaz"
-    //   }))
-    // }
+    
 
     const handleRewardSubmit = (e) => {
         e.preventDefault();
@@ -37,46 +46,67 @@ function Rewards() {
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify({newReward})
+            body: JSON.stringify({rewards})
           })
           .then((response) => response.json())
           .then((data) => {
-           console.log(data)
+           setRewards(data)
           })
+        //   setRewards(([
+        //     { reward : "", gemlevel : "topaz"},
+        //     { reward : "", gemlevel: "emerald"},
+        //     { reward : "", gemlevel : "diamond"}
+        // ]));
+        setRewardsSent(true)
     }
 
-    
+    useEffect(() => {
+
+      if (score.score >= 150) {
+        setDiamondUnlocked(true);
+      } else if (score.score >= 90) {
+        setEmeraldUnlocked(true);
+      } else if (score.score >= 50) {
+        setTopazUnlocked(true);
+      }
+    }, [score.score]); 
+
 
   return (
     <div>
         <div>
-        <h3>ENTER YOUR REWARDS</h3>
+          <h3>ENTER YOUR REWARDS</h3>
         <form onSubmit= {handleRewardSubmit}>
             <label htmlFor="">TOPAZ</label>
             <input type="text"
             name = "topaz"
-            value = {newReward.reward}
+            value = {rewards[0].reward}
             onChange={(e) => handleInputChange(e)}
              />
 
                <label htmlFor="">EMERALD</label>
             <input type="text"
             name = "emerald"
-            value = {newReward.reward}
+            value = {rewards[1].reward}
             onChange={(e) => handleInputChange(e)}
              />
 
             <label htmlFor="">DIAMOND</label>
             <input type="text"
             name = "diamond"
-            value = {newReward.reward}
+            value = {rewards[2].reward}
             onChange={(e) => handleInputChange(e)}
              />
+
              <button>SUBMIT</button>
         </form>
+        {rewardsSent && <h2>Rewards added Successfully. Complete goals to increase your score.</h2> }
         </div>
         <div>
            <h4>Unlocked Rewards Display Here</h4>
+            {topazUnlocked && (<h3 className='reward1'>You've Earned {rewards[0].reward} !</h3>)}
+            {emeraldUnlocked && (<h2 className='reward2'>You've Earned {rewards[1].reward} !</h2>)}
+            {diamondUnlocked && (<h1 className='reward3'>You've Earned {rewards[2].reward} !</h1>)}
         </div>
     </div>
   )

@@ -38,12 +38,24 @@ router.post('/goals', async (req, res) =>{
 });
 
 router.post('/rewards', async (req, res) => {
-  let { reward, gemlevel } = req.body.newReward;
+ 
+
+  const topaz = req.body.rewards[0];
+  const emerald = req.body.rewards[1];
+  const diamond = req.body.rewards[2];
+
+  console.log(topaz, emerald, diamond)
+
   const insertRewards = `INSERT INTO rewards (reward, gemlevel) 
-  VALUES ('${reward}', '${gemlevel}');`
+  VALUES ('${topaz.reward}', 'topaz'),
+        ('${emerald.reward}', 'emerald'),
+        ('${diamond.reward}', 'diamond')
+  `
   try{
     await db(insertRewards);
-    res.send("Reward added successfully")
+
+    const results = await db(`SELECT * FROM rewards`)
+    res.send(results.data)
   } catch (err) {
     res.status(500).send({error: err.message});
   }
@@ -73,6 +85,7 @@ router.get('/rewards', async (req, res) => {
   try {
     let results = await db(`SELECT * FROM rewards;`);
     res.send(results.data);
+    console.log(results.data)
   } catch (err) {
     res.status(500).send({error: err.message});
   }

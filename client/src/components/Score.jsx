@@ -1,28 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import Topaz from "./images/topaz.png"
-import Emerald from "./images/emerald.png"
-import Diamond from "./images/diamond.png"
+import TopazImg from "./images/topaz.png"
+import EmeraldImg from "./images/emerald.png"
+import DiamondImg from "./images/diamond.png"
 import "./Score.css"
 
-function Score() {
+function Score({score}) {
 
-const [score, setScore] = useState(0)
 
-useEffect(() => {
-  fetch("/api/goals/score")
-  .then(res => res.json())
-  .then(response => {
-    // console.log(response)
-    let rawScore = response.data[0].total
-    let score = rawScore * 10
 
-    setScore(score)
-    console.log("Score Fetched")
-  })
-  .catch(error => {
-    console.log(error)
-  });
-}, []);
+
+
+let renderedImage;
+  if ( score >= 50 && score < 90) {
+    renderedImage = TopazImg;
+  } else if ( score >= 90 && score < 150) {
+    renderedImage = EmeraldImg;
+  } else if ( score >= 150) {
+    renderedImage = DiamondImg;
+  } else {
+    renderedImage = null
+  }
+
 
 
   return (
@@ -36,9 +34,7 @@ useEffect(() => {
         </div>
         </div>
         <div>
-            <img src={Topaz} alt="Topaz" />
-            <img src={Emerald} alt="Emerald" />
-            <img src={Diamond} alt="Diamond" />
+          {renderedImage && <img src={renderedImage}/>}
         </div>
     </div>
   )

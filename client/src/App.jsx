@@ -7,7 +7,24 @@ import './App.css';
 
 function App() {
   const [allGoals, setallGoals] = useState([]);
+
+  const [score, setScore] = useState(0)
   
+
+useEffect(() => {
+  fetch("/api/goals/score")
+  .then(res => res.json())
+  .then(response => {
+    let rawScore = response.data[0].total
+    let score = rawScore * 10
+
+    setScore(score)
+    console.log("Score Fetched")
+  })
+  .catch(error => {
+    console.log(error)
+  });
+}, []);
 
   useEffect(() => {
     fetch("/api/goals")
@@ -22,8 +39,7 @@ function App() {
   }, []);
 
   const handleAddGoal = (newGoal) => {
-    console.log(newGoal)
-    // setallGoals((state) => [...state, newGoal]);
+
     fetch("/api/goals", {
       method: "POST",
       headers: {
@@ -33,9 +49,22 @@ function App() {
     })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data)
       setallGoals(data)
     })
+  }
+
+  const updateScore = () => {
+    fetch("/api/goals/score")
+  .then(res => res.json())
+  .then(response => {
+
+    let rawScore = response.data[0].total
+    let score = rawScore * 10
+    setScore(score)
+  })
+  .catch(error => {
+    console.log(error)
+  });
   }
 
     const handleClick = (e) => {
@@ -49,6 +78,7 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         setallGoals(data)
+        updateScore()
       })
     }
    
@@ -57,7 +87,7 @@ function App() {
   return (
     <>
     <div className ='score-component'>
-    <Score/>
+    <Score score = {score}/>
     </div>
     <Form addGoal={(newGoal) => handleAddGoal(newGoal)}/>
     
@@ -162,7 +192,7 @@ function App() {
       </div>
     </div>
     <div>
-      <Rewards/>
+      <Rewards score = {score}/>
     </div>
 
     </>

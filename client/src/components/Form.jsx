@@ -24,7 +24,12 @@ function Form(props) {
     const handleSubmit = (e) => {
         e.preventDefault();
         props.addGoal(newGoal);
-        // console.log(newGoal)
+        setNewGoal({
+            goal: "",
+            difflevel: 1,
+            dayofweek: "",
+            completed: false
+        })
     }
 
 
