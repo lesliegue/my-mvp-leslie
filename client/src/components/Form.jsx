@@ -5,7 +5,7 @@ function Form(props) {
     const [newGoal, setNewGoal] = useState({
         goal: "",
         difflevel: 1,
-        dayofweek: "",
+        dayofweek: "monday",
         completed: false
     })
 
