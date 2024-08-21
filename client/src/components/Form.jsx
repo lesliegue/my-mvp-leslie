@@ -27,7 +27,7 @@ function Form(props) {
         setNewGoal({
             goal: "",
             difflevel: 1,
-            dayofweek: "",
+            dayofweek: "monday",
             completed: false
         })
     }
