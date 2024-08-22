@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "./Rewards.css"
 
-function Rewards(score) {
+function Rewards({score}) {
 
     const [rewards, setRewards] = useState([
       { reward : "", gemlevel : "topaz"},
@@ -60,16 +60,26 @@ function Rewards(score) {
         setRewardsSent(true)
     }
 
-    useEffect(() => {
 
-      if (score.score >= 150) {
+    useEffect(() => {
+      if (score >= 150) {
         setDiamondUnlocked(true);
-      } else if (score.score >= 90) {
         setEmeraldUnlocked(true);
-      } else if (score.score >= 50) {
         setTopazUnlocked(true);
+      } else if (score >= 90) {
+        setDiamondUnlocked(false);
+        setEmeraldUnlocked(true);
+        setTopazUnlocked(true);
+      } else if (score >= 50) {
+        setDiamondUnlocked(false);
+        setEmeraldUnlocked(false);
+        setTopazUnlocked(true);
+      } else {
+        setDiamondUnlocked(false);
+        setEmeraldUnlocked(false);
+        setTopazUnlocked(false);
       }
-    }, [score.score]); 
+    }, [score]);
 
 
   return (
