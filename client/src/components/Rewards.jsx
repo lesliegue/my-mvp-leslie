@@ -9,6 +9,8 @@ function Rewards({score}) {
       { reward : "", gemlevel : "diamond"}
   ])
 
+    const [chosenRewards, setChosenRewards] = useState([])
+
 
   const [rewardsSent, setRewardsSent] = useState(false)
 
@@ -50,13 +52,13 @@ function Rewards({score}) {
           })
           .then((response) => response.json())
           .then((data) => {
-           setRewards(data)
+           setChosenRewards(data)
           })
-        //   setRewards(([
-        //     { reward : "", gemlevel : "topaz"},
-        //     { reward : "", gemlevel: "emerald"},
-        //     { reward : "", gemlevel : "diamond"}
-        // ]));
+          setRewards(([
+            { reward : "", gemlevel : "topaz"},
+            { reward : "", gemlevel: "emerald"},
+            { reward : "", gemlevel : "diamond"}
+        ]));
         setRewardsSent(true)
     }
 
@@ -114,9 +116,9 @@ function Rewards({score}) {
         </div>
         <div>
            <h4>Unlocked Rewards Display Here</h4>
-            {topazUnlocked && (<h3 className='reward1'>You've Earned {rewards[0].reward} !</h3>)}
-            {emeraldUnlocked && (<h2 className='reward2'>You've Earned {rewards[1].reward} !</h2>)}
-            {diamondUnlocked && (<h1 className='reward3'>You've Earned {rewards[2].reward} !</h1>)}
+            {topazUnlocked && (<h3 className='reward1'>You've Earned {chosenRewards[0].reward} !</h3>)}
+            {emeraldUnlocked && (<h2 className='reward2'>You've Earned {chosenRewards[1].reward} !</h2>)}
+            {diamondUnlocked && (<h1 className='reward3'>You've Earned {chosenRewards[2].reward} !</h1>)}
         </div>
     </div>
   )
