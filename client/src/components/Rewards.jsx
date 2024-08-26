@@ -9,7 +9,11 @@ function Rewards({score}) {
       { reward : "", gemlevel : "diamond"}
   ])
 
-    const [chosenRewards, setChosenRewards] = useState([])
+    const [chosenRewards, setChosenRewards] = useState([
+      { reward : "", gemlevel : "topaz"},
+      { reward : "", gemlevel: "emerald"},
+      { reward : "", gemlevel : "diamond"}
+    ])
 
 
   const [rewardsSent, setRewardsSent] = useState(false)

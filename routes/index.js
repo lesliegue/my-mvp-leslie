@@ -63,7 +63,7 @@ router.post('/rewards', async (req, res) => {
 
 
 router.put('/goals', async (req, res) => {
-  console.log('HEYYYYY', req.body)
+
  let { id } = req.body.e;
   try {
    const foundGoal = await db(`SELECT * FROM goals WHERE id = ${id}`);
