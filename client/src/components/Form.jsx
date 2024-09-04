@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import "./Form.css"
 
 function Form(props) { 
 
@@ -37,42 +38,40 @@ function Form(props) {
   return (
     <div>
         <form onSubmit={handleSubmit}>
-        <div>
-        <label htmlFor="">Add your Goals
-            <input type="text" 
-            name="goal"
-            value={newGoal.goal}
-            onChange={(e) => handleInput(e)}
-            />
-        </label>
-        <select name="dayofweek"
-            onChange={(e) => handleInput(e)} >
-            <option value="monday">MON</option>
-            <option value="tuesday">TUE</option>
-            <option value="wednesday">WED</option>
-            <option value="thursday">THUR</option>
-            <option value="friday">FRI</option>
-            <option value="saturday">SAT</option>
-            <option value="sunday">SUN</option>
-        </select>
-        </div>
-        <div>
-        <label>This Goal is 
-            <select name="difflevel"
-            onChange={(e) => handleInput(e)}>
-                <option value="1">easy</option>
-                <option value= "2">moderate</option>
-                <option value="3">challenging</option>
-            </select>
-            for me
-        </label>
-        <div>
-        <button>SUBMIT</button>
-        </div>
-        </div>
+            <div className='component' id='add-goal-form'>
+                <label htmlFor="">Add your goals: </label>
+                <div className="add-input">
+                    <input type="text" 
+                    name="goal"
+                    value={newGoal.goal}
+                    onChange={(e) => handleInput(e)}
+                    />
+                </div>
+            </div>
+                <div className='dropdown'>
+                    <label>Ideally, to be completed by: </label>
+                    <select name="dayofweek"
+                        onChange={(e) => handleInput(e)} >
+                            <option value="monday">MON</option>
+                            <option value="tuesday">TUE</option>
+                            <option value="wednesday">WED</option>
+                            <option value="thursday">THUR</option>
+                            <option value="friday">FRI</option>
+                            <option value="saturday">SAT</option>
+                            <option value="sunday">SUN</option>
+                    </select>
+                    <label>For me, this goal is: </label>
+                    <select name="difflevel"
+                            onChange={(e) => handleInput(e)}>
+                                <option value="1">Easy</option>
+                                <option value= "2">Moderate</option>
+                                <option value="3">Challenging</option>
+                    </select>
+                </div>
+            <div>
+                <button>SUBMIT</button>
+            </div>
         </form>
-
-
     </div>
   )
 }

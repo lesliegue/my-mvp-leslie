@@ -92,7 +92,7 @@ function Rewards({score}) {
     <div>
         <div>
           <h3>ENTER YOUR REWARDS</h3>
-        <form onSubmit= {handleRewardSubmit}>
+        <form className="rewards-form" onSubmit= {handleRewardSubmit}>
             <label htmlFor="">TOPAZ</label>
             <input type="text"
             name = "topaz"
@@ -120,9 +120,9 @@ function Rewards({score}) {
         </div>
         <div>
            <h4>Unlocked Rewards Display Here</h4>
-            {topazUnlocked && (<h3 className='reward1'>You've Earned {chosenRewards[0].reward} !</h3>)}
-            {emeraldUnlocked && (<h2 className='reward2'>You've Earned {chosenRewards[1].reward} !</h2>)}
-            {diamondUnlocked && (<h1 className='reward3'>You've Earned {chosenRewards[2].reward} !</h1>)}
+            {topazUnlocked && (<h3 className='reward1'>You've earned {chosenRewards[0].reward} !</h3>)}
+            {emeraldUnlocked && (<h2 className='reward2'>You've earned {chosenRewards[1].reward} !</h2>)}
+            {diamondUnlocked && (<h1 className='reward3'>You've earned {chosenRewards[2].reward} !</h1>)}
         </div>
     </div>
   )

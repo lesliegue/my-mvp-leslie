@@ -3,6 +3,8 @@ import Form from "./components/Form";
 import Score from "./components/Score";
 import Rewards from "./components/Rewards";
 import Calendar from "./components/Calendar";
+import MonthlyCalendar from "./components/MonthlyCalendar";
+import DateCalendarValue from "./components/DateCalendarValue";
 import './App.css';
 
 
@@ -10,6 +12,10 @@ function App() {
   const [allGoals, setallGoals] = useState([]);
 
   const [score, setScore] = useState(0)
+  const activities = {
+    '2024-09-02': ['Drink Coffee', 'Learn React', 'Sleep'],
+    '2024-09-05': ['Drink Coffee', 'Learn CSS', 'Sleep'],
+  }
   
 
 useEffect(() => {
@@ -52,20 +58,48 @@ useEffect(() => {
     .then((data) => {
       setallGoals(data)
     })
-  }
+  
+
+  // const handleDeleteGoal = (goalId) => {
+
+  //   fetch("/api/goals/id", {
+  //     method: "DELETE",
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     },
+  //     body: JSON.stringify({goalId})
+  //   })
+  //   .then((response) => response.json())
+  //   .then((data) => {
+  //     setallGoals(data)
+  //   })
+  // }
+}
 
 
   return (
     <>
-    <div className ='score-component'>
-    <Score score = {score}/>
-    </div>
-    <Form addGoal={(newGoal) => handleAddGoal(newGoal)}/>
-    <Calendar score = {setScore} allGoals = {allGoals} setallGoals = {setallGoals}/>
-    <div>
+      <header>
+        <div className = 'score-component'>
+          <Score score = {score}/>
+        </div>
+      </header>
+      <h1>Gamified Goals</h1>
+      <div className='component' id='add-goal-form'>
+        <Form addGoal={(newGoal) => handleAddGoal(newGoal)}/>
+      </div>
+      <div className='component' id='calendar-score'>
+        <Calendar score = {setScore} allGoals = {allGoals} setallGoals = {setallGoals}/>
+        {/* <Button intent="danger" onClick={() => deleteUser(user.id)}>
+                  Delete
+                </Button> */}
+        {/* <MonthlyCalendar activities={activities}/> */}
+        <DateCalendarValue />
+      </div>
+    <div className='component' id='rewards'>
       <Rewards score = {score}/>
-    </div>
 
+    </div>
     </>
   )
 }

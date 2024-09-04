@@ -24,18 +24,16 @@ let renderedImage;
 
 
   return (
-    <div>
-        <div  className='score-container'>
-          <div>
-        <h2>SCORE</h2>
-        </div>
-        <div  className='score'>
-          <h2>{score}</h2>
-        </div>
-        </div>
-        <div>
+    <div  className='score-container'>
+        <div className='score-image'>
           {renderedImage && <img src={renderedImage}/>}
         </div>
+        <div>
+          <div>
+            <h2>SCORE: {score}</h2>
+          </div>
+        </div>
+
     </div>
   )
 }

@@ -1,0 +1,48 @@
+.single-day {
+    width: 95%;
+    padding: 5px;
+    margin: 10px 20px;
+    text-align: left;
+}
+
+#monday {
+    background-color: #ff4dab;
+    border-radius: 10px;
+    color: white;
+}
+
+#tuesday {
+    background-color: #ff6f81;
+    border-radius: 10px;
+    color: white;
+}
+
+#wednesday {
+    background-color: #ff9e61;
+    border-radius: 10px;
+    color: white;
+}
+
+#thursday {
+    background-color: #ffcd57;
+    border-radius: 10px;
+    color: white;
+}
+
+#friday {
+    background-color: #f9f871;
+    border-radius: 10px;
+    color: white;
+}
+
+#saturday {
+    background-color: #daabd9;
+    border-radius: 10px;
+    color: white;
+}
+
+#sunday {
+    background-color: #736ef6;
+    border-radius: 10px;
+    color: white;
+}

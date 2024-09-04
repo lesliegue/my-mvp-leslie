@@ -2,10 +2,15 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding: 2px 20px 2px 20px;
+    background-image: linear-gradient(to right, rgba(255, 158, 97, 1), rgba(255, 205, 87, 1), rgba(249, 248, 113, 1));
+    border-radius: 20px;
+    padding-left: 20px;
+    position: sticky;
+    top: 0;
 }
 
-.score {
-    /* display: flex;
-    flex-direction: row; */
-    text-align: right;
+.score-image > img {
+    width: 80%;
+    border-radius: 50px;
 }
