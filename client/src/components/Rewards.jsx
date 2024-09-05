@@ -114,7 +114,7 @@ function Rewards({score}) {
             onChange={(e) => handleInputChange(e)}
              />
 
-             <button>SUBMIT</button>
+             <button className='principal-button'>SUBMIT</button>
         </form>
         {rewardsSent && <h2>Rewards added Successfully. Complete goals to increase your score.</h2> }
         </div>

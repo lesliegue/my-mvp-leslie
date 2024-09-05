@@ -90,10 +90,6 @@ useEffect(() => {
       </div>
       <div className='component' id='calendar-score'>
         <Calendar score = {setScore} allGoals = {allGoals} setallGoals = {setallGoals}/>
-        {/* <Button intent="danger" onClick={() => deleteUser(user.id)}>
-                  Delete
-                </Button> */}
-        {/* <MonthlyCalendar activities={activities}/> */}
         <DateCalendarValue />
       </div>
     <div className='component' id='rewards'>

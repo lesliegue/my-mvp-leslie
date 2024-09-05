@@ -12,6 +12,16 @@ router.get('/goals', async (req, res) => {
   }
 });
 
+router.get('/goals/day/:name', async (req, res) => {
+  const {name} = req.params;
+  try {
+    let results = await db(`SELECT * FROM goals WHERE dayofweek = '${name}';`);
+  res.send (results.data)
+  } catch (err) {
+    res.status(500).send({error: err.message});
+  }
+});
+
 router.get('/goals/score', async (req, res) => {
   try {
     let results = await db(`SELECT SUM(difflevel) as total FROM goals WHERE completed = true;`);

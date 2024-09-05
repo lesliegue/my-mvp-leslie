@@ -69,7 +69,7 @@ function Form(props) {
                     </select>
                 </div>
             <div>
-                <button>SUBMIT</button>
+                <button className='principal-button'>SUBMIT</button>
             </div>
         </form>
     </div>

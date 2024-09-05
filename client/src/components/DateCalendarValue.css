@@ -1,0 +1,23 @@
+.delete-button {
+    margin-right: 16px;
+    height: 24px;
+    width: 24px;
+    margin-left: 10px;
+    background-color: #d5cabd;
+    border-radius: 50%;
+    border: 0.2em solid black;
+    cursor: pointer;
+  }
+
+.delete-button:hover {
+    background-color: #cf4ed4;
+}
+
+li {
+    text-align: left;
+    padding-bottom: 15px;
+}
+
+p {
+    color: rgba(255, 246, 255);
+}
